@@ -34,7 +34,7 @@ async function main() {
 }
 
 const db = mongoose.connection;
-eb.on("error", censole.error.bind(console, "connection error:"));
+db.on("error", censole.error.bind(console, "connection error:"));
 db.once("open", function () {
   console.log("Database Connected");
 });
