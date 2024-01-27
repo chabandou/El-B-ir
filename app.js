@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const joi = require("joi");
-const expressError = require("./utils/expressError.js")
+const ExpressError = require("./utils/ExpressError.js")
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -174,7 +174,7 @@ app.get("/", (req, res) => {
 
 
 app.all("*", (req, res, next) => {
-  next(new expressError("Page not found.", 404));
+  next(new ExpressError("Page not found.", 404));
 });
 
 app.use((err, req, res, next) => {

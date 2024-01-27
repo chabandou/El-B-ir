@@ -1,6 +1,6 @@
 const { truckValidSchema, reviewValidSchema } = require("./schemas.js");
 const truck = require("./models/truck.js");
-const ExpressError = require("./utils/expressError.js");
+const ExpressError = require("./utils/ExpressError.js");
 const review = require("./models/review");
 
 
