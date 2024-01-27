@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %>
+<div class="container d-flex justify-content-center align-items-center my-5">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card shadow border-light-subtle">
+        <div class="card-body">
+          <img class="card-img-top w-75 offset-2" src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706098619/the_well/bonbon-signing-documents-online-3_e25q9w.png" alt="">
+          <h4 class="card-title mb-4">Inscription</h4>
+          <form action="/register" class="validate-form" method="post" novalidate>
+            <div class="my-3">
+              <label class="form-label" for="username">Nom d'Utilisateur:</label>
+              <input
+                class="form-control"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Nom d'Utilisateur"
+                required
+                autofocus
+              />
+              <div class="invalid-feedback">
+                Veuillez fournir un Utilisateur valide.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="email">Adresse E-mail:</label>
+              <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="E-mail"
+                required
+              />
+              <div class="invalid-feedback">Veuillez fournir un E-mail valide.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">Mot de passe:</label>
+              <input
+                class="form-control"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Mot de passe"
+                required
+              />
+              <div class="invalid-feedback">
+                Veuillez fournir mot de passe valide.
+              </div>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-success my-3 btn-block">
+                Inscrivez-vous
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

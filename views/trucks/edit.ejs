@@ -1,0 +1,147 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="text-center">Modifiez ce Fournisseur</h1>
+<div class="col-6 offset-3">
+  <form
+    action="/trucks/<%= foundTruck._id %>?_method=PUT"
+    method="post"
+    class="validate-form"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <div class="row">
+      <div class="col-6 mb-3">
+        <label class="form-label" for="name">Nom:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          name="truck[name]"
+          placeholder="Nom"
+          value="<%= foundTruck.name %>"
+          required
+        />
+        <div class="invalid-feedback">Veuillez fournir un Nom valide.</div>
+      </div>
+      <div class="col-6 mb-3">
+        <label class="form-label" for="phone">N° Téléphone:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="phone"
+          name="truck[phone]"
+          placeholder="N° Téléphone"
+          value="<%= foundTruck.phone %>"
+          required
+        />
+        <div class="invalid-feedback">Veuillez fournir un Numéro valide.</div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-8">
+        <label class="form-label" for="type">Type d'Eau:</label>
+        <select class="form-select" name="truck[type]" id="type">
+          <option value="" disabled>-- Type d'Eau --</option>
+          <% for (type of waterTypes) { %>
+            <option value="<%= type %>" <%= foundTruck.type === type ? 'selected' : '' %>><%= type %></option>
+            <% } %>
+        </select>
+        <!-- <input
+          class="form-control"
+          type="text"
+          id="type"
+          name="truck[type]"
+          placeholder="Type d'Eau"
+          value=""
+          required
+        />
+        <div class="invalid-feedback">Veuillez fournir un type valide.</div> -->
+      </div>
+      <div class="col-4">
+        <label class="form-label" for="price">Prix:</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="text"
+            id="price"
+            name="truck[price]"
+            placeholder="Prix"
+            value="<%= foundTruck.price %>"
+            required
+          />
+          <span class="input-group-text">DZD/L</span>
+          <div class="invalid-feedback">Veuillez fournir un prix valide.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="location">Localisation:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="location"
+        name="truck[location]"
+        placeholder="Localisation"
+        value="<%= foundTruck.location %>"
+        required
+      />
+      <div class="invalid-feedback">
+        Veuillez fournir une ville/région valide.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="image">Ajoutez une image:
+      </label>
+      <input
+        class="form-control"
+        type="file"
+        id="image"
+        name="truck[image]"
+      />
+      <div class="invalid-feedback">
+        Veuillez fournir une ville/région valide.
+      </div>
+    </div>
+
+    <div class="d-md-flex justify-content-center gap-5 my-5">
+      <button class="btn btn-outline-info px-5">Modifiez</button>
+      <button class="btn btn-outline-danger px-5" id="cancelBtn">
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const cancelBtn = document.querySelector("#cancelBtn");
+  // const foundTruck =
+  cancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    location.href = "/trucks";
+  });
+
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (() => {
+    "use strict";
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll(".validate-form");
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>

@@ -1,0 +1,171 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheet/starts.css" />
+<div class="container text-center">
+<div class="row my-4">
+  <div class="col-sm-12 col-md-5 offset-md-1 px-2 ps-xl-5">
+    <div class="card text-start mb-3 border-secondary" style="width: auto">
+      <% if(foundTruck.image) { %>
+      <img
+        src="<%= foundTruck.image.url %>"
+        class="card-img-top "
+        alt="image-du-fournissuer"
+      />
+      <% } else { %>
+        <img src="https://res.cloudinary.com/djdgwvhcp/image/upload/w_300/v1705106375/the_well/rdhbwigvzqbbfbd5g4y5.png" class="card-img-top" alt="">
+        <% } %>
+      <div class="card-header fs-2 fw-bold"><%= foundTruck.name %></div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item fs-3">
+          <b style="color: #5bc0de">Téléphone:</b> <%= foundTruck.phone %>
+        </li>
+        <li class="list-group-item fs-5">
+          <b style="color: #5bc0de">Localisation:</b> <%= foundTruck.location %>
+        </li>
+        <li class="list-group-item fs-5">
+          <b style="color: #5bc0de">Type d'Eau:</b> <%= foundTruck.type %>
+        </li>
+        <li class="list-group-item fs-5">
+          <b style="color: #5bc0de">Prix:</b> <%= foundTruck.price %> DZD/L
+        </li>
+        <li class="list-group-item fs-5">
+          <b style="color: #5bc0de">Ajouté par:</b> <%=
+          foundTruck.author.username %>
+        </li>
+      </ul>
+      <% if(currentUser && foundTruck.author.equals(currentUser._id)) {%>
+      <form
+        class="d-flex justify-content-evenly my-3"
+        action="/trucks/<%= foundTruck._id %>?_method=DELETE"
+        method="post"
+      >
+        <a
+          href="/trucks/<%= foundTruck._id %>/edit"
+          class="btn btn-outline-info d-inline px-4"
+          >Modifiez</a
+        >
+        <button class="btn btn-outline-danger px-4">Supprimer</button>
+      </form>
+      <% } %>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-5 px-2 pe-xl-5 text-start ">
+    <div id="map" class="mb-3"></div>
+    <% if (currentUser) { %>
+    <div class="my-5">
+      <h2>Laissez un Avis</h2>
+      <form
+        class="validate-form mt-4"
+        action="/trucks/<%= foundTruck._id %>/reviews"
+        method="post"
+        novalidate
+      >
+        <!-- <label class="form-label" for="rating">Notation:</label> -->
+        <!-- <input
+          class="form-range"
+          min="0"
+          max="5"
+          type="range"
+          name="review[rating]"
+          id="rating"
+        /> -->
+        <fieldset class="starability-grow">
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="0"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="first-rate1"
+            name="review[rating]"
+            value="1"
+          />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input
+            type="radio"
+            id="first-rate2"
+            name="review[rating]"
+            value="2"
+          />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="review[rating]"
+            value="3"
+          />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="review[rating]"
+            value="4"
+          />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input
+            type="radio"
+            id="first-rate5"
+            name="review[rating]"
+            value="5"
+          />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+        <label class="form-label" for="review">Avis:</label>
+        <textarea
+          class="form-control"
+          name="review[body]"
+          id="review"
+          cols="30"
+          rows="3"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Veuillez fournir un avis.</div>
+        <div class="container-fluid d-flex justify-content-center">
+          <button class="btn btn-outline-success px-5 mt-3">
+            Ajoutez
+          </button>
+        </div>
+
+      </form>
+    </div>
+    <% } %> <% if (foundTruck.reviews.length) { %>
+    <h3 class="my-3 text-start">Des Avis sur ce Fournisseur</h3>
+    <% for (let review of foundTruck.reviews) { %>
+    <div class="card mb-3">
+      <div class="card-body text-start">
+        <!-- <h5 class="card-title">Notation: ></h5> -->
+        <h5 class="card-title mb-2 text-body-secondary">
+          by <%= review.author.username %>
+        </h5>
+        <p class="starability-result" data-rating="<%= review.rating %>">
+          Rated: <%= review.rating %> stars
+        </p>
+        <p class="card-text"><%= review.body %></p>
+        <% if(currentUser && review.author.equals(currentUser._id)) {%>
+
+        <form
+          action="/trucks/<%= foundTruck._id %>/reviews/<%= review._id %>?_method=DELETE"
+          method="post"
+        >
+          <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+    <% } %> <% } %>
+  </div>
+</div>
+</div>
+
+
+<script>
+  const mapToken = '<%-process.env.MAPBOX_TOKEN%>' 
+  const locationQuery = "<%= foundTruck.location %>"
+</script>
+
+<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+<script src="/javascript/detailsMap.js"></script>

@@ -1,0 +1,91 @@
+<% layout('layouts/boilerplate') %>
+<div class="container text-center px-5">
+  <h1 class="py-3">Tous Les Fournisseurs</h1>
+
+  <div class="my-3">
+    <a href="/trucks/new">Ajoutez un Fournisseur</a>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <% for (let truck of trucks) { %>
+      <div class="card mb-3 text-start my-4">
+        <div class="row g-0">
+          <div class="col-sm-12 col-md-4 col-xl-4">
+            <% if (truck.image) { %>
+            <img
+              src="<%= truck.image.thumbnail %>"
+              class="w-100"
+              alt=""
+            />
+            <% } else { %>
+            <img
+              src="https://res.cloudinary.com/djdgwvhcp/image/upload/w_300/v1705106375/the_well/rdhbwigvzqbbfbd5g4y5.png"
+              class="w-100"
+              alt=""
+            />
+            <% } %>
+          </div>
+          <div class="col-sm-12 col-md-8 col-xl-8">
+            <div class="card-body p-0">
+              <div class="card-header">
+                <a
+                  href="/trucks/<%= truck._id %>"
+                  class="fs-3"
+                  style="
+                    color: #5bc0de;
+                    text-decoration: none;
+                    font-weight: bold;
+                  "
+                  ><%= truck.name %></a
+                >
+              </div>
+              <p class="card-title fs-4 ps-3 my-2">
+                <b>N°: <%= truck.phone %></b>
+              </p>
+              <p class="card-text fs-5 ps-3 my-2"><%= truck.location %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- <% for (let truck of trucks) { %>
+  <div class="card my-3" style="max-width: 540px">
+    <div class="row g-0">
+      <div class="col-sm-12 col-md-4 col-xl-4">
+        <% if (truck.image) { %>
+        <img
+          src="<%= truck.image.thumbnail %>"
+          class="w-100"
+          alt=""
+        />
+        <% } else { %>
+        <img
+          src="https://res.cloudinary.com/djdgwvhcp/image/upload/w_300/v1705106375/the_well/rdhbwigvzqbbfbd5g4y5.png"
+          class="w-100"
+          alt=""
+        />
+        <% } %>
+      </div>
+      <div class="col-sm-12 col-md-8 col-xl-8">
+        <div class="card-body p-0">
+          <div class="card-header">
+              <a
+                href="/trucks/<%= truck._id %>"
+                class="fs-3"
+                style="color: #5bc0de; text-decoration: none; font-weight: bold"
+                ><%= truck.name %></a
+              >
+          </div>
+
+          <p class="card-text ps-3 my-2"><b>N°: <%= truck.phone %></b></p>
+          <p class="card-text ps-3 my-2"><%= truck.location %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div> -->

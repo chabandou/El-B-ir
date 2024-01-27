@@ -1,0 +1,53 @@
+<% layout('layouts/boilerplate') %>
+<div class="container d-flex justify-content-center align-items-center my-5">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card shadow border-light-subtle">
+        <div class="card-body">
+          <img class="card-img-top w-75 offset-2" src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1705995879/the_well/bonbon-secure-protection-with-fingerprint-and-lock_ubw3ax.png" alt="">
+          <h4 class="card-title">Se connecter</h4>
+          <form action="/login" class="validate-form" method="post" novalidate>
+            <div class="my-3">
+              <label class="form-label" for="username">Nom d'Utilisateur:</label>
+              <input
+                class="form-control"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Nom d'Utilisateur"
+                autofocus
+                required
+              />
+              <div class="invalid-feedback">
+                Veuillez fournir un Utilisateur valide.
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label" for="password">Mot de passe:</label>
+              <input
+                class="form-control"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Mot de passe"
+                required
+              />
+              <div class="invalid-feedback">
+                Veuillez fournir mot de passe valide.
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button class="btn btn-success my-3 btn-block">
+                Connectez-vous
+              </button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

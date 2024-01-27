@@ -1,0 +1,114 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="text-center">Ajouter un Fournisseur</h1>
+<div class="col-6 offset-3">
+  <form
+    action="/trucks"
+    method="post"
+    class="validate-form"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <div class="mb-3">
+      <label class="form-label" for="name">Nom:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="name"
+        name="truck[name]"
+        placeholder="Nom"
+        required
+      />
+      <div class="invalid-feedback">Veuillez fournir un Nom valide.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="phone">N° Téléphone:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="phone"
+        name="truck[phone]"
+        placeholder="N° Téléphone"
+        required
+      />
+      <div class="invalid-feedback">Veuillez fournir un Numéro valide.</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-8">
+        <label class="form-label" for="type">Type d'Eau:</label>
+        <select class="form-select" name="truck[type]" id="type" required>
+          <option value="" selected disabled>-- Type d'Eau --</option>
+          <% for (type of waterTypes) { %>
+          <option value="<%= type %>"><%= type %></option>
+          <% } %>
+        </select>
+        <!-- <input
+          class="form-control"
+          type="text"
+          id="type"
+          name="truck[type]"
+          placeholder="Type d'Eau"
+          required
+        /> -->
+        <!-- <div class="invalid-feedback">Veuillez fournir un type valide.</div> -->
+      </div>
+      <div class="col-4">
+        <label class="form-label" for="price">Prix:</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="text"
+            id="price"
+            name="truck[price]"
+            placeholder="Prix"
+            aria-label="Amount (to the nearest dollar)"
+            required
+          />
+          <span class="input-group-text">DZD/L</span>
+          <div class="invalid-feedback">Veuillez fournir un prix valide.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="location">Localisation:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="location"
+        name="truck[location]"
+        placeholder="Localisation"
+        required
+      />
+      <div class="invalid-feedback">
+        Veuillez fournir une ville/région valide.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="image"
+        >Ajoutez une image:
+      </label>
+      <input class="form-control" type="file" id="image" name="truck[image]" />
+      <div class="invalid-feedback">
+        Veuillez fournir une ville/région valide.
+      </div>
+    </div>
+
+    <div class="d-grid gap-5 d-md-flex justify-content-md-center my-5">
+      <button class="btn btn-success px-5">Ajoutez</button>
+      <button class="btn btn-outline-danger px-5" id="cancelBtn">
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const cancelBtn = document.querySelector("#cancelBtn");
+
+  cancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    location.href = "/trucks";
+  });
+</script>
