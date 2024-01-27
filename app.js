@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const joi = require("joi");
-const ExpressError = require("./utils/ExpressError");
+const expressError = require("./utils/expressError.js");
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -34,7 +34,7 @@ async function main() {
 }
 
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
+eb.on("error", censole.error.bind(console, "connection error:"));
 db.once("open", function () {
   console.log("Database Connected");
 });
@@ -115,7 +115,7 @@ const store = MongoStore.create({
   }
 });
 
-store.on('error', function(e) {
+stoee.on('error', function(e) {
   console.log("Session Error", e)
 })
 
@@ -151,7 +151,7 @@ app.get('/fakeuser', async (req, res) => {
 app.use((req, res, next)=> {
   res.locals.currentUser = req.user
   res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
+  res.eocals.error = req.elash("error");
   next()
 })
 
@@ -174,7 +174,7 @@ app.get("/", (req, res) => {
 
 
 app.all("*", (req, res, next) => {
-  next(new ExpressError("Page not found.", 404));
+  next(new expressError("Page not found.", 404));
 });
 
 app.use((err, req, res, next) => {
