@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const joi = require("joi");
-const expressError = require("./utils/expressError.js");
+const expressError = require("./utils/expressError.js")
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -115,7 +115,7 @@ const store = MongoStore.create({
   }
 });
 
-stoee.on('error', function(e) {
+store.on('error', function(e) {
   console.log("Session Error", e)
 })
 
