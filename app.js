@@ -23,13 +23,13 @@ const helmet = require('helmet')
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
 
-const dbUrl = "mongodb://127.0.0.1:27017/theWell" // process.env.DB_URL
+const dbUrl = process.env.DB_URL
 
-mongoose.connect("mongodb://127.0.0.1:27017/theWell");
+mongoose.connect(dbUrl);
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/theWell");
+  await mongoose.connect(dbUrl);
   console.log("Mongo Connection Open");
 }
 
