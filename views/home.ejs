@@ -45,7 +45,7 @@
       <div class="p-3 cover-container d-flex w-100 mx-auto flex-column">
         <header class="mb-3">
           <nav class="navbar navbar-expand-lg sticky-top">
-            <div class="container-fluid">
+            <div class="container-fluid fs-5">
               <a class="navbar-brand fw-bold logo-font" href="/"
                 ><i class="bi bi-droplet-fill mx-1"></i> El B'ir</a
               >
@@ -61,22 +61,17 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <div class="navbar-nav"></div>
+                <div class="navbar-nav ms-auto">
                   <a class="nav-link" aria-current="page" href="/trucks"
                     >Fournisseurs</a
                   >
-                  <a class="nav-link" href="/trucks/new">Ajoutez</a>
-                </div>
-                <div class="navbar-nav ms-auto">
+                  <a class="nav-link px-5" href="/trucks/new">Ajoutez</a>
                   <% if (!currentUser) { %>
-                  <a href="/login" class="btn btn-outline-info ms-3"
-                    >Connexion</a
-                  >
-                  <a href="/register" class="btn btn-light ms-3">S'inscrire</a>
+                  <a href="/login" class="nav-link">Connexion</a>
+                  <a href="/register" class="nav-link px-5">S'inscrire</a>
                   <% } else { %>
-                  <a href="/logout" class="btn btn-outline-light ms-3"
-                    >Déconnecter</a
-                  >
+                  <a href="/logout" class="nav-link">Déconnecter</a>
                   <% } %>
                 </div>
               </div>
@@ -87,15 +82,21 @@
 
       <main>
         <div class="container-fluid">
-          <section class="row landing px-5 py-5">
-            <div class="col-md-6 text-lg-start my-3 pe-5">
-              <h1 class="py-4 landing-header">Bienvenu à El B'ir !</h1>
+          
+          <section
+            class="row landing px-5 py-5 justify-content-center align-items-center"
+          >
+            <div class="col-md-5 text-lg-start my-3 pe-5">
+              <h1 class="pt-4 pb-2 landing-header">Bienvenu à El B'ir !</h1>
+              <h4 class="pb-2">
+                Votre annuaire des camions-citernes d'eau dans la
+                région de Touggourt
+              </h4>
               <p class="py-3">
-                <b><i>El B'ir</i></b> fournit un annuaire des camions-citernes
-                d'eau travaillant dans la région de Touggourt et des
-                informations utiles comme leurs coordonnées et le prix de l'eau,
-                il est donc plus facile de trouver un fournisseur approprié en
-                un clin d'œil et, Inchallah, n'ayez plus jamais soif !
+                Des informations utiles comme leurs coordonnées et le prix de
+                l'eau est disponible, il est donc plus facile de trouver un
+                fournisseur approprié en un clin d'œil et, Inchallah, n'ayez
+                plus jamais soif !
               </p>
               <a
                 class="btn btn-lg btn-dark fw-bold text-white my-3"
@@ -104,21 +105,21 @@
                 <i class="bi bi-arrow-right-square ps-1"></i
               ></a>
             </div>
-            <div class="col-md-6 my-3">
+            <div class="col-md-5 mt-3">
               <img
                 class="landing-img"
-                src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706113286/the_well/LandingImage2_o2uj1z.png"
+                src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706440746/the_well/LandingImage3_sjkugd.png"
                 alt=""
               />
             </div>
           </section>
 
           <section class="row justify-content-center align-items-center g-2">
-            <div class="col-12" >
+            <div class="col-12">
               <h1>Comment ça marche</h1>
               <p class="text-muted">Une main dans la main</p>
             </div>
-            <div class="col-12 col-sm-3 ">
+            <div class="col-12 col-sm-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="64"
@@ -132,9 +133,12 @@
                 />
               </svg>
               <h4>Choisiez un quartier</h4>
-              <p class="text-muted fs-5">Choisiez le quartier où vous habitiez ou voulez remplir l'eau et choisi un fournisseur dans le même quartier.</p>
+              <p class="text-muted fs-5">
+                Choisiez le quartier où vous habitiez ou voulez remplir l'eau et
+                choisi un fournisseur dans le même quartier.
+              </p>
             </div>
-            <div class="col-12 col-sm-3 ">
+            <div class="col-12 col-sm-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="64"
@@ -149,16 +153,22 @@
                 />
               </svg>
               <h4>Applez le Fournisseur</h4>
-              <p class="text-muted fs-5">Appelez le numéro indiqué dans les informations du fournisseur et donnez-lui votre adresse complète.</p>
+              <p class="text-muted fs-5">
+                Appelez le numéro indiqué dans les informations du fournisseur
+                et donnez-lui votre adresse complète.
+              </p>
             </div>
-            <div class="col-12 col-sm-3 ">
+            <div class="col-12 col-sm-3">
               <img
                 src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706287488/the_well/TRUCK_ICON_WHITE_p7dfba.png"
                 alt=""
                 class="hiw-icon w-100 p-0 m-0"
               />
               <h4>Remplissez l'eau chez Vous</h4>
-              <p class="text-muted fs-5">Le fournisseur devrait être chez vous dans quelques minutes pour compléter le service.</p>
+              <p class="text-muted fs-5">
+                Le fournisseur devrait être chez vous dans quelques minutes pour
+                compléter le service.
+              </p>
             </div>
           </section>
 

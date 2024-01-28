@@ -5,24 +5,34 @@ body {
     height: 100vh;
 }
 
+.nav-link {
+    color: aliceblue;
+}
 
+.nav-link:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: .25rem;
+}
 
 .landing {
-    background-color: #6a9294;
+    background:  linear-gradient(0.35turn, #3e8e93 5%, #6a9294 35%);
+    /* background: linear-gradient(to right bottom, #004e83 1%, #6a9294) */
     /* min-height: 100vh; */
 }
 
 .logo-font {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
+    font-size: 2rem;
 }
 
 .cover-container {
-    max-width: 75vw;
+    max-width: 80vw;
 }
 
 .landing-img {
-    max-width: 100%;
+    max-width: 130%;
+    
 }
 
 .landing-header {
@@ -38,11 +48,6 @@ p {
 
 .features-1-img {
     max-width: 100%;
-}
-
-.nav-link:hover {
-    text-decoration-line: underline;
-    text-decoration-thickness: .25rem;
 }
 
 .hiw-icon {

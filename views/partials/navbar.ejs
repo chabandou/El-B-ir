@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container-fluid">
+    <div class="container-fluid m-1">
       <a class="navbar-brand fw-bold" href="/"><i class="bi bi-droplet-fill mx-1"></i> El B'ir</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,10 +12,10 @@
         </div>
         <div class="navbar-nav ms-auto">
           <% if (!currentUser) { %>
-          <a href="/login" class="nav-link">Connexion</a>
-          <a href="/register" class="nav-link">S'inscrire</a>
+          <a href="/login" class="btn btn-outline-info ms-3">Connexion</a>
+          <a href="/register" class="btn btn-outline-light ms-3">S'inscrire</a>
           <% } else { %>
-          <a href="/logout" class="nav-link">Déconnecter</a>
+          <a href="/logout" class="btn btn-outline-danger ms-3">Déconnecter</a>
           <% } %>
         </div>
       </div>
