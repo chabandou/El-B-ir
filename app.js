@@ -23,7 +23,7 @@ const helmet = require('helmet')
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
 
-const dbUrl = process.env.DB_URL
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/theWell'
 
 mongoose.connect(dbUrl);
 main().catch((err) => console.log(err));
@@ -107,11 +107,13 @@ app.use(
   })
 );
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   touchAfter: 24 * 60 * 60,
   crypto: {
-      secret: 'thisshouldbeabettersecret!'
+      secret 
   }
 });
 
@@ -122,7 +124,7 @@ store.on('error', function(e) {
 const sessionConfing = {
   store,
   name: 'wellsession',
-  secret: 'thisshouldbeabettersecret!',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
