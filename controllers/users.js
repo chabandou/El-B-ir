@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 module.exports = {
   renderRegister: (req, res) => {
-    res.render("auth/register");
+    res.render("Auth/register");
   },
   register: async (req, res, next) => {
     try {
@@ -20,7 +20,7 @@ module.exports = {
     }
   },
   renderLogin: (req, res) => {
-    res.render("auth/login.ejs");
+    res.render("Auth/login");
   },
   login: (req, res) => {
     req.flash("success", `Bon retour, ${req.body.username}!`);
