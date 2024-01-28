@@ -144,12 +144,6 @@ passport.use(new localStrategy(user.authenticate()))
 passport.serializeUser(user.serializeUser())
 passport.deserializeUser(user.deserializeUser())
 
-app.get('/fakeuser', async (req, res) => {
-  const User = new user({email: "chab@gmail.com", username: "chab"})
-  const newUser = await user.register(User, '0410')
-  res.send(newUser)
-})
-
 app.use((req, res, next)=> {
   res.locals.currentUser = req.user
   res.locals.success = req.flash("success");

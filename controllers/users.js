@@ -20,7 +20,7 @@ module.exports = {
     }
   },
   renderLogin: (req, res) => {
-    res.render("auth/login");
+    res.render("auth/login.ejs");
   },
   login: (req, res) => {
     req.flash("success", `Bon retour, ${req.body.username}!`);
