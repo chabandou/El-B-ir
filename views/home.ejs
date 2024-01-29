@@ -40,186 +40,136 @@
     />
   </head>
 
-  <body class="d-flex text-center text-white bg-dark">
-    <div class="d-flex w-100 h-100 mx-auto flex-column landing">
-      <div class="p-3 cover-container d-flex w-100 mx-auto flex-column">
-        <header class="mb-3">
-          <nav class="navbar navbar-expand-lg sticky-top">
-            <div class="container-fluid fs-5">
-              <a class="navbar-brand fw-bold logo-font" href="/"
-                ><i class="bi bi-droplet-fill mx-1"></i> El B'ir</a
-              >
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav"></div>
-                <div class="navbar-nav ms-auto">
-                  <a class="nav-link" aria-current="page" href="/trucks"
-                    >Fournisseurs</a
-                  >
-                  <a class="nav-link px-5" href="/trucks/new">Ajoutez</a>
-                  <% if (!currentUser) { %>
-                  <a href="/login" class="nav-link">Connexion</a>
-                  <a href="/register" class="nav-link px-5">S'inscrire</a>
-                  <% } else { %>
-                  <a href="/logout" class="nav-link">Déconnecter</a>
-                  <% } %>
-                </div>
+  <body class="text-white">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center landing"
+    >
+      <header class="mt-4 col-sm-10">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid p-0 fs-5">
+            <a class="navbar-brand fw-bold logo-font" href="/"
+              ><i class="bi bi-droplet-fill me-1"></i>El B'ir</a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav"></div>
+              <div class="navbar-nav ms-auto">
+                <a class="nav-link" aria-current="page" href="/trucks"
+                  >Fournisseurs</a
+                >
+                <a class="nav-link px-5" href="/trucks/new">Ajoutez</a>
+                <% if (!currentUser) { %>
+                <a href="/login" class="nav-link">Connexion</a>
+                <a href="/register" class="nav-link px-5">S'inscrire</a>
+                <% } else { %>
+                <a href="/logout" class="nav-link">Déconnecter</a>
+                <% } %>
               </div>
             </div>
-          </nav>
-        </header>
-      </div>
-
-      <main>
-        <div class="container-fluid">
-          
-          <section
-            class="row px-5 py-5 justify-content-center align-items-center"
-          >
-            <div class="col-md-5 text-lg-start my-3 pe-5">
-              <h1 class="pt-4 pb-2 landing-header">Bienvenu à El B'ir !</h1>
-              <h4 class="pb-2">
-                Votre annuaire des camions-citernes d'eau dans la
-                région de Touggourt
-              </h4>
-              <p class="py-3">
-                Des informations utiles comme leurs coordonnées et le prix de
-                l'eau est disponible, il est donc plus facile de trouver un
-                fournisseur approprié en un clin d'œil et, Inchallah, n'ayez
-                plus jamais soif !
-              </p>
-              <a
-                class="btn btn-lg btn-dark fw-bold text-white my-3"
-                href="/trucks"
-                >Voir les Fournissuers
-                <i class="bi bi-arrow-right-square ps-1"></i
-              ></a>
-            </div>
-            <div class="col-md-5 mt-3">
-              <img
-                class="landing-img"
-                src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706440746/the_well/LandingImage3_sjkugd.png"
-                alt=""
-              />
-            </div>
-          </section>
-
-          <section class="row justify-content-center align-items-center g-2">
-            <div class="col-12">
-              <h1>Comment ça marche</h1>
-              <p class="text-muted">Une main dans la main</p>
-            </div>
-            <div class="col-12 col-sm-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="64"
-                height="64"
-                fill="currentColor"
-                class="bi bi-geo-alt-fill w-100"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
-                />
-              </svg>
-              <h4>Choisiez un quartier</h4>
-              <p class="text-muted fs-5">
-                Choisiez le quartier où vous habitiez ou voulez remplir l'eau et
-                choisi un fournisseur dans le même quartier.
-              </p>
-            </div>
-            <div class="col-12 col-sm-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="64"
-                height="64"
-                fill="currentColor"
-                class="bi bi-telephone-outbound-fill w-100"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5"
-                />
-              </svg>
-              <h4>Applez le Fournisseur</h4>
-              <p class="text-muted fs-5">
-                Appelez le numéro indiqué dans les informations du fournisseur
-                et donnez-lui votre adresse complète.
-              </p>
-            </div>
-            <div class="col-12 col-sm-3">
-              <img
-                src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706287488/the_well/TRUCK_ICON_WHITE_p7dfba.png"
-                alt=""
-                class="hiw-icon w-100 p-0 m-0"
-              />
-              <h4>Remplissez l'eau chez Vous</h4>
-              <p class="text-muted fs-5">
-                Le fournisseur devrait être chez vous dans quelques minutes pour
-                compléter le service.
-              </p>
-            </div>
-          </section>
-
-          <section class="row my-3 collab-sec">
-            <div class="col-md-6">
-              <img
-                class="features-1-img"
-                src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1705931894/the_well/bonbon-robot-hand-aiding-business-processes-by-moving-gears_tcja4i.png"
-                alt=""
-              />
-            </div>
-            <div
-              class="col-md-6 d-flex flex-column justify-content-center align-items-center pe-5"
-            >
-              <h1 class="py-3">Collaboration Ouverte</h1>
-              <p class="fs-5">
-                El B'ir est un projet collaboratif donc votre aide est également
-                nécessaire ! vous pouvez ajouter de nouveaux fournisseurs que
-                vous connaissez, ou si vous êtes un fournisseur, ajoutez vos
-                informations en vous inscrivant et en remplissant le formulaire
-                de nouveau fournisseur.
-              </p>
-            </div>
-          </section>
+          </div>
+        </nav>
+      </header>
+      <section
+        class="d-flex flex-column flex-sm-row py-5 justify-content-center align-items-start"
+      >
+        <div class="col-sm-5 text-lg-start my-3 pe-5">
+          <h1 class="pt-4 pb-2 landing-header">Bienvenu à El B'ir !</h1>
+          <h4 class="pb-2">
+            Votre annuaire des camions-citernes d'eau dans la région de
+            Touggourt
+          </h4>
+          <p class="py-3">
+            Des informations utiles comme leurs coordonnées et le prix de l'eau
+            est disponible, il est donc plus facile de trouver un fournisseur
+            approprié en un clin d'œil et, Inchallah, n'ayez plus jamais soif !
+          </p>
+          <a class="btn btn-lg btn-dark fw-bold text-white my-3" href="/trucks"
+            >Voir les Fournissuers <i class="bi bi-arrow-right-square ps-1"></i
+          ></a>
         </div>
-      </main>
-      <footer class="footer bg-body-tertiary py-3 mt-auto">
-        <div class="container-fluid text-start">
-          <span class="text-muted">
-            &copy; The Well - 2024 -
-            <a
-              class="text-muted text-decoration-none"
-              href="https://www.freepik.com/free-vector/realistic-front-view-smartphone-mockup-mobile-iphone-purple-frame-with-blank-white-display-vector_33632332.htm#query=smart%20phone&position=1&from_view=search&track=ais&uuid=fcd39abe-c0bb-4a78-9754-1543c9cf3a29"
-              >part of the images by svstudioart</a
-            >
-            on Freepik - Some illustrations by
-            <a
-              class="text-muted text-decoration-none"
-              href="https://icons8.com/illustrations/author/zD2oqC8lLBBA"
-              >Icons 8</a
-            >
-            from
-            <a
-              class="text-muted text-decoration-none"
-              href="https://icons8.com/illustrations"
-              >Ouch!</a
-            >
-          </span>
+        <div class="col-sm-5 mt-3">
+          <img
+            class="landing-img"
+            src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706440746/the_well/LandingImage3_sjkugd.png"
+            alt=""
+          />
         </div>
-      </footer>
+      </section>
     </div>
+
+    <main class="d-flex flex-column justify-content-center align-items-center">
+      <section
+        class="d-flex flex-column justify-content-center align-items-center g-2 text-center"
+      >
+        <div class="">
+          <h1>Comment ça marche</h1>
+          <p class="text-muted">Une main dans la main</p>
+        </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center">
+          <div class="text-center col-sm-3 px-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="64"
+              height="64"
+              fill="currentColor"
+              class="bi bi-geo-alt-fill w-100"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+              />
+            </svg>
+            <h4>Choisiez un quartier</h4>
+            <p class="text-muted fs-5">
+              Choisiez le quartier où vous habitiez ou voulez remplir l'eau et
+              choisi un fournisseur dans le même quartier.
+            </p>
+          </div>
+          <div class="text-center col-sm-3 px-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="64"
+              height="64"
+              fill="currentColor"
+              class="bi bi-telephone-outbound-fill w-100"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5"
+              />
+            </svg>
+            <h4>Applez le Fournisseur</h4>
+            <p class="text-muted fs-5">
+              Appelez le numéro indiqué dans les informations du fournisseur et
+              donnez-lui votre adresse complète.
+            </p>
+          </div>
+          <div class="text-center col-sm-3 px-1">
+            <img
+              src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1706287488/the_well/TRUCK_ICON_WHITE_p7dfba.png"
+              alt=""
+              class="hiw-icon w-100 p-0 m-0"
+            />
+            <h4>Remplissez l'eau chez Vous</h4>
+            <p class="text-muted fs-5">
+              Le fournisseur devrait être chez vous dans quelques minutes pour
+              compléter le service.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

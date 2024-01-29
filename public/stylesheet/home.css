@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Ubuntu', sans-serif;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .nav-link {
@@ -31,7 +31,7 @@ body {
 }
 
 .landing-img {
-    max-width: 130%;
+    max-width: 120%;
     
 }
 
