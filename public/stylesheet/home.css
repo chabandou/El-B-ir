@@ -6,10 +6,11 @@ body {
 }
 
 .nav-link {
-    color: aliceblue;
+    color: rgb(255, 255, 255);
 }
 
 .nav-link:hover {
+    color: azure;
     text-decoration-line: underline;
     text-decoration-thickness: .25rem;
 }
@@ -55,5 +56,5 @@ p {
 }
 
 .collab-sec {
-    background-color: #6a9294;
+    background-color: #658d8f;
 }
