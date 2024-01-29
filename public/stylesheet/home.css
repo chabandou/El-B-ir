@@ -55,6 +55,12 @@ p {
     max-width: 64px;
 }
 
+.stepN {
+    position: relative;
+    right: 15%
+}
+
 .collab-sec {
     background-color: #658d8f;
 }
+
