@@ -5,14 +5,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav ms-auto align-items-end">
             <a class="nav-link" href="/">Accueil</a>
           <a class="nav-link" aria-current="page" href="/trucks">Fournisseurs</a>
           <a class="nav-link" href="/trucks/new">Ajoutez</a>
-        </div>
-        <div class="navbar-nav ms-auto">
           <% if (!currentUser) { %>
-          <a href="/login" class="btn btn-outline-info ms-3">Connexion</a>
+          <a href="/login" class="btn btn-outline-info ms-3 my-3">Connexion</a>
           <a href="/register" class="btn btn-outline-light ms-3">S'inscrire</a>
           <% } else { %>
           <a href="/logout" class="btn btn-outline-danger ms-3">Déconnecter</a>
