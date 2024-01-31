@@ -13,41 +13,41 @@
           </div>
           <h4 class="card-title">Se connecter</h4>
           <form action="/login" class="validate-form" method="post" novalidate>
-            <div class="my-3">
-              <label class="form-label" for="username"
-                >Nom d'Utilisateur:</label
-              >
+            <div class="form-floating my-3">
               <input
-                class="form-control"
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Nom d'Utilisateur"
-                autofocus
-                required
+              class="form-control"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Nom d'Utilisateur"
+              autofocus
+              required
               />
+              <label for="username"
+                >Nom d'Utilisateur</label
+              >
               <div class="invalid-feedback">
                 Veuillez fournir un Utilisateur valide.
               </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label" for="password">Mot de passe:</label>
+            <div class="form-floating mb-3">
               <input
-                class="form-control"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Mot de passe"
-                required
+              class="form-control"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Mot de passe"
+              required
               />
+              <label class="form-label" for="password">Mot de passe</label>
               <div class="invalid-feedback">
                 Veuillez fournir mot de passe valide.
               </div>
             </div>
 
             <div class="d-grid gap-2">
-              <button class="btn btn-success my-3 btn-block">
+              <button class="btn btn-success my-3 btn-block text-white">
                 Connectez-vous
               </button>
             </div>

@@ -32,9 +32,18 @@ body {
 }
 
 .landing-img {
-    max-width: 120%;
+    max-width: 100%;
     
+} 
+
+@media (min-width: 512px) {
+    .landing-img {
+        max-width: 120%;
+        
+    } 
 }
+
+
 
 .landing-header {
     font-family: 'Dancing Script', cursive;
