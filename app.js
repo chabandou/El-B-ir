@@ -66,6 +66,7 @@ const scriptSrcUrls = [
   "https://cdn.jsdelivr.net",
   "http://www.w3.org/2000/svg",
   "https://fonts.googleapis.com/",
+  "https://unpkg.com/"
 ];
 const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
