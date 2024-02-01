@@ -58,18 +58,79 @@
         </form>
         <% } %>
       </div>
-        <div class="card">
-          card-tit
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-          </ul>
-          <div class="card-header">
-            Featured
-          </div>
+      <!-- total price calculator section -->
+      <div class="card my-3">
+        <div class="card-header bg-dark my-3">
+          <h4 class="card-title">Calculez le prix total</h4>
         </div>
+        <div class="card-body fs-5">
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center"
+          >
+            <div class="form-floating mb-3 col-7 col-md-8">
+              <input
+                type="number"
+                class="form-control"
+                name="amount"
+                id="amount"
+                placeholder="Quantité"
+                required
+                style="height: 70px"
+              />
+              <label for="amount">Quantité d'eau en litre</label>
+            </div>
+            <p>(×) <%= foundTruck.price %> DZD/L</p>
+          </div>
+          <button class="btn" id="calc">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="40"
+              height="40"
+              viewBox="0,0,256,256"
+              style="fill: #000000"
+            >
+              <g
+                fill="none"
+                fill-rule="nonzero"
+                stroke="none"
+                stroke-width="1"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+                stroke-miterlimit="10"
+                stroke-dasharray=""
+                stroke-dashoffset="0"
+                font-family="none"
+                font-weight="none"
+                font-size="none"
+                text-anchor="none"
+                style="mix-blend-mode: normal"
+              >
+                <g transform="translate(0,256) rotate(-90) scale(6.4,6.4)">
+                  <path
+                    d="M20,38.5c-10.201,0 -18.5,-8.299 -18.5,-18.5c0,-10.201 8.299,-18.5 18.5,-18.5c10.201,0 18.5,8.299 18.5,18.5c0,10.201 -8.299,18.5 -18.5,18.5z"
+                    fill="#5bc0de"
+                  ></path>
+                  <path
+                    d="M20,2c9.925,0 18,8.075 18,18c0,9.925 -8.075,18 -18,18c-9.925,0 -18,-8.075 -18,-18c0,-9.925 8.075,-18 18,-18M20,1c-10.493,0 -19,8.507 -19,19c0,10.493 8.507,19 19,19c10.493,0 19,-8.507 19,-19c0,-10.493 -8.507,-19 -19,-19z"
+                    fill="#ffffff"
+                  ></path>
+                  <path
+                    d="M23,9l3,3l-8,8l8,8l-3,3l-11,-11z"
+                    fill="#ffffff"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="bg-body-tertiary resultSc p-3">-- Prix Total --</div>
+      </div>
+      <!-- end of total price calculator  -->
     </div>
+
+    <!-- Map & reviews column -->
     <div class="col-12 col-md-5 px-2 pe-xl-5 text-start">
       <div id="map" class="mb-3"></div>
       <% if (currentUser) { %>
@@ -81,15 +142,6 @@
           method="post"
           novalidate
         >
-          <!-- <label class="form-label" for="rating">Notation:</label> -->
-          <!-- <input
-          class="form-range"
-          min="0"
-          max="5"
-          type="range"
-          name="review[rating]"
-          id="rating"
-        /> -->
           <fieldset class="starability-grow">
             <input
               type="radio"
@@ -151,6 +203,30 @@
           </div>
         </form>
       </div>
+      <% } else { %>
+      <div class="card border-secondary text-center">
+        <img
+          class="col-12 col-md-6 align-self-center"
+          alt="svgImg"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCwwLDI1NiwyNTYiCnN0eWxlPSJmaWxsOiMwMDAwMDA7Ij4KPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1ydWxlPSJub256ZXJvIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iIiBzdHJva2UtZGFzaG9mZnNldD0iMCIgZm9udC1mYW1pbHk9Im5vbmUiIGZvbnQtd2VpZ2h0PSJub25lIiBmb250LXNpemU9Im5vbmUiIHRleHQtYW5jaG9yPSJub25lIiBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6IG5vcm1hbCI+PGcgdHJhbnNmb3JtPSJzY2FsZSg1LjMzMzMzLDUuMzMzMzMpIj48cGF0aCBkPSJNMjQsNWMtMTIuMDYxMjQsMCAtMjIsOC40Mjg0OCAtMjIsMTljMCwzLjgxNjc1IDEuMzE5MzksNy4zNjkwNCAzLjU0ODgzLDEwLjMzMzk4Yy0wLjU2MTkxLDIuNDIyMDYgLTEuNzUyODMsNC43NjQ0OSAtMi42MTEzMyw1Ljk1NzAzaDAuMDAxOTVjLTAuNDg4MTYsMC42Nzc4NCAtMC40NjU5OSwxLjU2MjM4IC0wLjA5MTgsMi4xODc1YzAuMzc0MTksMC42MjUxMiAxLjE0MTIyLDEuMDY0NzEgMS45Njg3NSwwLjk1ODk4YzIuMjgwODMsLTAuMjkwODkgNS45NDAyNCwtMC44MDE4NCA5LjU2ODM2LC0yLjUzNTE2YzAuMzMwNzEsLTAuMTQ4ODIgMC41NTQ5NSwtMC40NjUwMSAwLjU4NjAyLC0wLjgyNjMzYzAuMDMxMDcsLTAuMzYxMzIgLTAuMTM1ODksLTAuNzExMTUgLTAuNDM2MzQsLTAuOTE0MjRjLTAuMzAwNDUsLTAuMjAzMDkgLTAuNjg3MywtMC4yMjc2MyAtMS4wMTEsLTAuMDY0MTJjLTMuMjkwMzUsMS41NzE5NSAtNi43MDU4MywyLjA2ODMgLTguOTU3MDMsMi4zNTU0N2MxLjA3ODM3LC0xLjQ5OTUyIDIuMzcwODYsLTQuMDU4MjEgMi45ODI0MiwtNi44ODI4MWMwLjEyNTE3LC0wLjI2MzAyIDAuMTI5NDUsLTAuNTY3NTUgMC4wMTE3MiwtMC44MzM5OGMtMC4wNTEyOSwtMC4xMzE0OSAtMC4xMjk4NCwtMC4yNTA2NCAtMC4yMzA0NywtMC4zNDk2MWMtMi4xMTE4OSwtMi43MDI5MiAtMy4zMzAwOCwtNS45MTk5IC0zLjMzMDA4LC05LjM4NjcyYzAsLTkuMzEwNDggOC44NjUyNCwtMTcgMjAsLTE3YzExLjEzNDc2LDAgMjAsNy42ODk1MiAyMCwxN2MwLDkuMzEwNDggLTguODY1MjQsMTcgLTIwLDE3Yy0xLjk5ODc1LDAgLTMuOTI3NDYsLTAuMjUwMzMgLTUuNzQ2MDksLTAuNzEyODljLTAuNTM1NTcsLTAuMTM1OTEgLTEuMDc5OTEsMC4xODgwNyAtMS4yMTU4MiwwLjcyMzYzYy0wLjEzNTkxLDAuNTM1NTcgMC4xODgwNywxLjA3OTkxIDAuNzIzNjMsMS4yMTU4MmMxLjk3OTM2LDAuNTAzNDQgNC4wNzMwMywwLjc3MzQ0IDYuMjM4MjgsMC43NzM0NGMxMi4wNjEyNCwwIDIyLC04LjQyODQ4IDIyLC0xOWMwLC0xMC41NzE1MiAtOS45Mzg3NiwtMTkgLTIyLC0xOXpNMjMuOTk0MTQsMTMuOTM5NDVjLTAuMzY5NzMsMC4wMDI4IC0wLjcwNzc1LDAuMjA5MzcgLTAuODc4OTEsMC41MzcxMWwtMi42MDkzNyw1LjAxNTYzbC01LjY3OTY5LDAuOTk4MDVjLTAuMzY5NzUsMC4wNjQ4NCAtMC42NzIwNSwwLjMzMTI4IC0wLjc4MjgyLDAuNjg5OTVjLTAuMTEwNzcsMC4zNTg2NyAtMC4wMTEzNiwwLjc0OTE3IDAuMjU3NDMsMS4wMTEyMmw0LjA0Mjk3LDMuOTQ5MjJsLTAuODk0NTMsNS43NjM2N2MtMC4wNTc2NiwwLjM3MzUxIDAuMTAwMTYsMC43NDc2MiAwLjQwNzkyLDAuOTY2OThjMC4zMDc3NiwwLjIxOTM2IDAuNzEyODksMC4yNDY0OSAxLjA0NzE1LDAuMDcwMTNsNS4wOTc2NiwtMi42ODk0NWw1LjA5Mzc1LDIuNjkzMzZjMC4zMzQyNiwwLjE3NjM2IDAuNzM5MzksMC4xNDkyMyAxLjA0NzE1LC0wLjA3MDEzYzAuMzA3NzYsLTAuMjE5MzYgMC40NjU1OCwtMC41OTM0NyAwLjQwNzkyLC0wLjk2Njk4bC0wLjg5NDUzLC01Ljc2NTYybDQuMDQyOTcsLTMuOTQ5MjJjMC4yNjc2NCwtMC4yNjIxNyAwLjM2NjMxLC0wLjY1MTk0IDAuMjU1NjQsLTEuMDA5ODhjLTAuMTEwNjcsLTAuMzU3OTQgLTAuNDEyMTIsLTAuNjIzOTkgLTAuNzgxMDMsLTAuNjg5MzRsLTUuNjc1NzgsLTEuMDAxOTVsLTIuNjA3NDIsLTUuMDEzNjdjLTAuMTczNTQsLTAuMzM0MSAtMC41MjAwMSwtMC41NDI0NCAtMC44OTY0OCwtMC41MzkwNnpNMjQuMDAxOTUsMTcuMTA1NDdsMS45NDkyMiwzLjc0NjA5YzAuMTQzMzgsMC4yNzU3OCAwLjQwNjgzLDAuNDY5MjIgMC43MTI4OSwwLjUyMzQ0bDQuMjQ0MTQsMC43NWwtMy4wMTc1OCwyLjk0NzI3Yy0wLjIzMTE2LDAuMjI1OTcgLTAuMzM4ODQsMC41NDk3NCAtMC4yODkwNiwwLjg2OTE0bDAuNjY3OTcsNC4zMDY2NGwtMy44MDA3OCwtMi4wMDk3N2MtMC4yOTIxMSwtMC4xNTQxNiAtMC42NDE0OSwtMC4xNTQxNiAtMC45MzM1OSwwbC0zLjgwNDY5LDIuMDA1ODZsMC42Njc5NywtNC4zMDY2NGMwLjA0OTExLC0wLjMxODc2IC0wLjA1ODUyLC0wLjY0MTY1IC0wLjI4OTA2LC0wLjg2NzE5bC0zLjAxNTYyLC0yLjk0NzI3bDQuMjQ2MDksLTAuNzQ4MDVjMC4zMDU2OCwtMC4wNTM3OSAwLjU2OTA1LC0wLjI0NjQ1IDAuNzEyODksLTAuNTIxNDh6Ij48L3BhdGg+PC9nPjwvZz4KPC9zdmc+"
+        />
+        <div class="card-body">
+          <h4 class="card-title">
+            Avez-vous utilisé les services de ce fournisseur ?
+          </h4>
+          <p class="card-text">
+            <a href="/login" class="text-info text-decoration-none"
+              >Connectez vous</a
+            >
+            ou
+            <a href="/register" class="text-info text-decoration-none"
+              >S'inscrire</a
+            >
+            pour laisser un avis.
+          </p>
+        </div>
+      </div>
+
       <% } %> <% if (foundTruck.reviews.length) { %>
       <h3 class="my-3 text-start">Des Avis sur ce Fournisseur</h3>
       <% for (let review of foundTruck.reviews) { %>
@@ -183,6 +259,36 @@
 <script>
   const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
   const locationQuery = "<%= foundTruck.location %>";
+
+  let input = document.querySelector("#amount");
+  const calcBtn = document.querySelector("#calc");
+  const resultSc = document.querySelector(".resultSc");
+  
+
+  function priceCalc(amount, POO) {
+    let inputAmount = parseInt(input.value);
+    const truckPrice = parseInt("<%- foundTruck.price %>");
+
+    let total = inputAmount * truckPrice;
+    if (isNaN(total)) {
+      resultSc.classList.add("bg-danger", "bg-opacity-50");
+      resultSc.classList.remove("bg-body-tertiary", "bg-info");
+      resultSc.innerHTML = "Entrez un numéro valide.";
+    } else {
+      resultSc.classList.add("bg-info", "bg-opacity-50");
+      resultSc.classList.remove("bg-danger", "bg-body-tertiary");
+      resultSc.innerHTML = `${total} DZD`;
+    }
+  }
+
+  amount.addEventListener("input", ()=>{
+    priceCalc();
+  })
+
+  calcBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    priceCalc();
+  });
 </script>
 
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
