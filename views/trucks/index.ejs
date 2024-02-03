@@ -10,11 +10,10 @@
     </select>
   </div>
 
-
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 mainCol">
       <% for (let truck of trucks) { %>
-      <div class="card mb-3 text-start my-4">
+      <div class="card mb-3 text-start my-4 truck" id="<%= truck.location %>">
         <div class="row g-0">
           <div class="col-sm-12 col-md-4 col-xl-4">
             <% if (truck.image) { %>
@@ -55,9 +54,22 @@
 
   <script>
     const locSelect = document.querySelector(".locSelect");
-    locSelect.addEventListener("change", () => {
-      location.href = `/trucks?location=${locSelect.value}`
-      
+    const renderedTrucks = document.querySelectorAll(".truck");
+    const mainCol = document.querySelector(".mainCol");
+    function filterItems(arr, query) {
+      let result = [];
+      arr.forEach((el) => {
+        if (el.id.toLowerCase().includes(query.toLowerCase())) {
+          result.push(el);
+        }
+      });
+      mainCol.innerHTML = ""
+      result.forEach((el) => {
+        mainCol.appendChild(el)
+      });
+    }
+    locSelect.addEventListener("change", async () => {
+      await filterItems(renderedTrucks, locSelect.value);
     });
   </script>
 

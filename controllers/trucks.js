@@ -4,20 +4,13 @@ const { cloudinary } = require("../cloudinary");
 
 module.exports.renderIndex = async (req, res) => {
   const locations = [];
-  const allTrucks = await truck.find({});
-  allTrucks.forEach((truck) => {
+  const trucks = await truck.find({});
+  trucks.forEach((truck) => {
     if (!locations.includes(truck.location)) {
       locations.push(truck.location);
     }
   });
-  const { location } = req.query;
-  if (location) {
-    const trucks = await truck.find({ location });
-    res.render("trucks/index", { trucks, locations });
-  } else {
-    const trucks = await truck.find({});
-    res.render("trucks/index", { trucks, locations });
-  }
+  res.render("trucks/index", { trucks, locations });
 };
 
 module.exports.renderNewForm = (req, res) => {
