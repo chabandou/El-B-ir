@@ -1,6 +1,15 @@
 <% layout('layouts/boilerplate') %>
 <div class="container text-center my-3 px-5">
   <h1 class="py-3">Tous Les Fournisseurs</h1>
+  <div class="text-white">
+    <select class="form-select text-white locSelect" name="" id="">
+      <option value="" selected disabled>-- Localisation --</option>
+      <% for (location of locations) { %>
+      <option value="<%= location %>"><%= location %></option>
+      <% } %>
+    </select>
+  </div>
+
 
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -9,11 +18,7 @@
         <div class="row g-0">
           <div class="col-sm-12 col-md-4 col-xl-4">
             <% if (truck.image) { %>
-            <img
-              src="<%= truck.image.thumbnail %>"
-              class="w-100"
-              alt=""
-            />
+            <img src="<%= truck.image.thumbnail %>" class="w-100" alt="" />
             <% } else { %>
             <img
               src="https://res.cloudinary.com/djdgwvhcp/image/upload/w_300/v1705272241/the_well/kg0no9b5imylnyroz4it.png"
@@ -47,6 +52,15 @@
       <% } %>
     </div>
   </div>
+
+  <script>
+    const locSelect = document.querySelector(".locSelect");
+    let trucks = "<%= trucks %>"
+    locSelect.addEventListener("change", () => {
+      location.href = `/trucks?location=${locSelect.value}`
+      
+    });
+  </script>
 
   <!-- <% for (let truck of trucks) { %>
   <div class="card my-3" style="max-width: 540px">
@@ -85,3 +99,4 @@
   </div>
   <% } %>
 </div> -->
+</div>
