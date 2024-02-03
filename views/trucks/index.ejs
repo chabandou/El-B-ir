@@ -55,7 +55,6 @@
 
   <script>
     const locSelect = document.querySelector(".locSelect");
-    let trucks = "<%= trucks %>"
     locSelect.addEventListener("change", () => {
       location.href = `/trucks?location=${locSelect.value}`
       
