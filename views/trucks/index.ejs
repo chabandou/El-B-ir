@@ -1,19 +1,66 @@
 <% layout('layouts/boilerplate') %>
+
 <div class="container text-center my-3 px-5">
   <h1 class="py-3">Tous Les Fournisseurs</h1>
-  <div class="text-white">
-    <select class="form-select text-white locSelect" name="" id="">
-      <option value="" selected disabled>-- Localisation --</option>
-      <% for (location of locations) { %>
-      <option value="<%= location %>"><%= location %></option>
-      <% } %>
-    </select>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div
+      class="col-md-8 text-white d-flex flex-column justify-content-center align-items-center gap-3"
+    >
+      <form
+        action=""
+        class="d-flex justify-content-center align-items-center form-control rounded-pill gap-2 w-100"
+        id="searchFrom"
+      >
+        <label for="searchBox">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+            />
+          </svg>
+        </label>
+        <input
+          class="w-100 border-0 bg-dark"
+          name="searchBox"
+          id="searchBox"
+          type="text"
+          placeholder="Cherchez un fournisseur"
+        />
+      </form>
+      <div
+        class="col-md-5 d-flex justify-content-center align-items-center gap-2"
+      >
+        <label class="form-label col-md-auto align-self-end" for="location"
+          >Filtrez par:</label
+        >
+        <select
+          class="form-select text-white locSelect"
+          name="location"
+          id="location"
+        >
+          <option value="" selected disabled>-- Localisation --</option>
+          <% for (location of locations) { %>
+          <option value="<%= location %>"><%= location %></option>
+          <% } %>
+        </select>
+      </div>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-md-6 offset-md-3 mainCol">
       <% for (let truck of trucks) { %>
-      <div class="card mb-3 text-start my-4 truck" id="<%= truck.location %>">
+      <div
+        class="card mb-3 text-start my-4 truck"
+        id="<%= truck.location %>"
+        name="<%= truck.name %>"
+      >
         <div class="row g-0">
           <div class="col-sm-12 col-md-4 col-xl-4">
             <% if (truck.image) { %>
@@ -56,6 +103,14 @@
     const locSelect = document.querySelector(".locSelect");
     const renderedTrucks = document.querySelectorAll(".truck");
     const mainCol = document.querySelector(".mainCol");
+    const searchBox = document.querySelector("#searchBox");
+    // console.log(renderedTrucks[0])
+
+    // ------------ filtering logic
+    TrucksLocations = [];
+    renderedTrucks.forEach((truck) => {
+      TrucksLocations.push(truck.id);
+    });
     function filterItems(arr, query) {
       let result = [];
       arr.forEach((el) => {
@@ -63,13 +118,36 @@
           result.push(el);
         }
       });
-      mainCol.innerHTML = ""
+      mainCol.innerHTML = "";
       result.forEach((el) => {
-        mainCol.appendChild(el)
+        mainCol.appendChild(el);
       });
     }
     locSelect.addEventListener("change", async () => {
       await filterItems(renderedTrucks, locSelect.value);
+    });
+
+    // ----------------- search logic
+    const allNames = [];
+    renderedTrucks.forEach((el) => {
+      allNames.push(el.attributes.name.value);
+    });
+    // console.log(allNames);
+    searchBox.addEventListener("input", () => {
+      let result2 = [];
+      renderedTrucks.forEach((truck) => {
+        if (
+          truck.attributes.name.value
+            .toLowerCase()
+            .includes(searchBox.value.toLowerCase())
+        ) {
+          result.push(truck);
+        }
+      });
+      mainCol.innerHTML = "";
+      result.forEach((el) => {
+        mainCol.appendChild(el);
+      });
     });
   </script>
 
