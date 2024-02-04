@@ -1,13 +1,13 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheet/starts.css" />
-<div class="container text-center">
-  <div class="row my-4">
-    <div class="col-12 col-md-5 offset-md-1 px-2 ps-xl-5">
+<section class="container text-center ">
+  <div class="row my-4 justify-content-center">
+    <div class="col-12 col-md-5">
       <div class="card text-start mb-3 border-secondary" style="width: auto">
         <% if(foundTruck.image) { %>
         <img
           src="<%= foundTruck.image.url %>"
-          class="card-img-top"
+          class="card-img-top "
           alt="image-du-fournissuer"
         />
         <% } else { %>
@@ -44,30 +44,31 @@
           method="post"
         >
           <div
-            class="d-flex flex-wrap gap-3 gap-md-0 justify-content-evenly align-items-center w-100"
+            class="d-flex flex-wrap gap-3 justify-content-evenly align-items-center px-2 w-100"
           >
             <a
               href="/trucks/<%= foundTruck._id %>/edit"
-              class="btn btn-outline-info d-inline col-12 col-sm-4"
+              class="btn btn-outline-info d-inline col-12 col-md-auto"
               >Modifiez</a
             >
-            <button class="btn btn-outline-danger col-12 col-sm-4">
+            <button class="btn btn-outline-danger col-12 col-md-auto">
               Supprimer
             </button>
           </div>
         </form>
         <% } %>
       </div>
-      <!-- total price calculator section -->
+
+      <!--------------- total price calculator section --------->
       <div class="card my-3">
-        <div class="card-header bg-dark my-3">
-          <h4 class="card-title">Calculez le prix total</h4>
+        <div class="bg-body-tertiary">
+          <h4 class="my-3">Calculez le prix total</h4>
         </div>
         <div class="card-body fs-5">
           <div
-            class="d-flex flex-wrap justify-content-between align-items-center"
+            class="d-flex flex-wrap justify-content-between align-items-center gap-3"
           >
-            <div class="form-floating mb-3 col-7 col-md-8">
+            <div class="form-floating mb-3 col-7 col-md">
               <input
                 type="number"
                 class="form-control"
@@ -81,57 +82,19 @@
             </div>
             <p>(×) <%= foundTruck.price %> DZD/L</p>
           </div>
-          <button class="btn" id="calc">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="40"
-              height="40"
-              viewBox="0,0,256,256"
-              style="fill: #000000"
-            >
-              <g
-                fill="none"
-                fill-rule="nonzero"
-                stroke="none"
-                stroke-width="1"
-                stroke-linecap="butt"
-                stroke-linejoin="miter"
-                stroke-miterlimit="10"
-                stroke-dasharray=""
-                stroke-dashoffset="0"
-                font-family="none"
-                font-weight="none"
-                font-size="none"
-                text-anchor="none"
-                style="mix-blend-mode: normal"
-              >
-                <g transform="translate(0,256) rotate(-90) scale(6.4,6.4)">
-                  <path
-                    d="M20,38.5c-10.201,0 -18.5,-8.299 -18.5,-18.5c0,-10.201 8.299,-18.5 18.5,-18.5c10.201,0 18.5,8.299 18.5,18.5c0,10.201 -8.299,18.5 -18.5,18.5z"
-                    fill="#5bc0de"
-                  ></path>
-                  <path
-                    d="M20,2c9.925,0 18,8.075 18,18c0,9.925 -8.075,18 -18,18c-9.925,0 -18,-8.075 -18,-18c0,-9.925 8.075,-18 18,-18M20,1c-10.493,0 -19,8.507 -19,19c0,10.493 8.507,19 19,19c10.493,0 19,-8.507 19,-19c0,-10.493 -8.507,-19 -19,-19z"
-                    fill="#ffffff"
-                  ></path>
-                  <path
-                    d="M23,9l3,3l-8,8l8,8l-3,3l-11,-11z"
-                    fill="#ffffff"
-                  ></path>
-                </g>
-              </g>
-            </svg>
+          <button class="btn col-md" id="calc">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
+              <g fill="#5bc0de" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="translate(256,248.15165) rotate(180) scale(10.66667,10.66667)"><path d="M12,4.38867c-0.38675,0 -0.77337,0.11194 -1.10937,0.33594l-7.15039,4.76563c-0.463,0.309 -0.74023,0.82877 -0.74023,1.38477c0,1.329 1.48189,2.12177 2.58789,1.38477l6.41211,-4.27539l6.41211,4.27539c1.106,0.737 2.58789,-0.05577 2.58789,-1.38477c0,-0.557 -0.27823,-1.07577 -0.74023,-1.38477l-7.15039,-4.76562c-0.336,-0.224 -0.72263,-0.33594 -1.10937,-0.33594zM12,10.7207c-0.38675,0 -0.77337,0.11194 -1.10937,0.33594l-7.15039,4.76563c-0.463,0.309 -0.74023,0.82876 -0.74023,1.38476c0,1.329 1.48189,2.12177 2.58789,1.38477l6.41211,-4.27539l6.41211,4.27734c1.106,0.737 2.58789,-0.05772 2.58789,-1.38672c0,-0.557 -0.27823,-1.07577 -0.74023,-1.38476l-7.15039,-4.76562c-0.336,-0.224 -0.72263,-0.33594 -1.10937,-0.33594z"></path></g></g>
+              </svg>
           </button>
         </div>
-        <div class="bg-body-tertiary resultSc p-3">-- Prix Total --</div>
+        <div class="bg-dark-subtle rounded-top-4 resultSc p-3 fs-5">-- Prix Total --</div>
       </div>
-      <!-- end of total price calculator  -->
+      <!-------------- end of total price calculator --------------->
     </div>
 
-    <!-- Map & reviews column -->
-    <div class="col-12 col-md-5 px-2 pe-xl-5 text-start">
+    <!--------------------- Map & reviews column ----------------->
+    <div class="col-12 col-md-5 text-start">
       <div id="map" class="mb-3"></div>
       <% if (currentUser) { %>
       <div class="my-5">
@@ -194,12 +157,12 @@
             name="review[body]"
             id="review"
             cols="30"
-            rows="3"
+            rows="5"
             required
           ></textarea>
           <div class="invalid-feedback">Veuillez fournir un avis.</div>
-          <div class="container-fluid d-flex justify-content-center">
-            <button class="btn btn-outline-success px-5 mt-3">Ajoutez</button>
+          <div class="d-flex justify-content-center my-3">
+            <button class="btn btn-outline-success col-12 col-md-4">Ajoutez</button>
           </div>
         </form>
       </div>
@@ -253,8 +216,10 @@
       </div>
       <% } %> <% } %>
     </div>
+    <!--------------------- END OF Map & reviews column ----------------->
+
   </div>
-</div>
+</secction>
 
 <script>
   const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
@@ -272,11 +237,11 @@
     let total = inputAmount * truckPrice;
     if (isNaN(total)) {
       resultSc.classList.add("bg-danger", "bg-opacity-50");
-      resultSc.classList.remove("bg-body-tertiary", "bg-info");
+      resultSc.classList.remove("bg-dark-subtle", "bg-info");
       resultSc.innerHTML = "Entrez un numéro valide.";
     } else {
       resultSc.classList.add("bg-info", "bg-opacity-50");
-      resultSc.classList.remove("bg-danger", "bg-body-tertiary");
+      resultSc.classList.remove("bg-danger", "bg-dark-subtle");
       resultSc.innerHTML = `${total} DZD`;
     }
   }

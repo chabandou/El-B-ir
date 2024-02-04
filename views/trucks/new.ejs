@@ -1,8 +1,11 @@
 <% layout('layouts/boilerplate') %>
 
-<section class="my-5">
+<section class="d-flex flex-column justify-content-center align-items-center my-5">
   <h1 class="text-center">Ajouter un Fournisseur</h1>
-  <div class="col-md-6 offset-md-3 px-3">
+  <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+    <img class="w-75" src="https://res.cloudinary.com/djdgwvhcp/image/upload/v1707045570/the_well/Add-truck-color2_bkzawm.png" alt="">
+  </div>
+  <div class="col-md-6 px-3">
     <form
       action="/trucks"
       method="post"
@@ -35,8 +38,8 @@
         <div class="invalid-feedback">Veuillez fournir un Numéro valide.</div>
       </div>
   
-      <div class="row mb-3">
-        <div class="col-8">
+      <div class="row mb-3 gap-3 gap-md-0">
+        <div class="col-12 col-md-8">
           <label class="form-label" for="type">Type d'Eau:</label>
           <select class="form-select" name="truck[type]" id="type" required>
             <option value="" selected disabled>-- Type d'Eau --</option>
@@ -54,7 +57,7 @@
           /> -->
           <!-- <div class="invalid-feedback">Veuillez fournir un type valide.</div> -->
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <label class="form-label" for="price">Prix:</label>
           <div class="input-group">
             <input

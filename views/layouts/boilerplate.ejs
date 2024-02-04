@@ -35,26 +35,32 @@
       href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/stylesheet/app.css">
+    <link rel="stylesheet" href="/stylesheet/app.css" />
     <style>
+      .navbar {
+        background: linear-gradient(rgba(255, 255, 255, 0) 50%, hsla(0, 0%, 0%, 0.1)),
+          linear-gradient(0.35turn, #3e8e93 5%, #6a9294 35%);
+      }
       #searchBox {
         height: 3rem;
       }
       #searchBox:focus {
-          outline: none;
-          border: none;
-        }
-      #searchForm:focus-within  {
+        outline: none;
+        border: none;
+      }
+      #searchForm:focus-within {
         border: 10px;
+      }
+
+      .resultSc {
+        font-family: monospace;
       }
     </style>
   </head>
 
   <body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar') %>
-    <main class="">
-      <%- include('../partials/flash') %> <%- body %>
-    </main>
+    <main class=""><%- include('../partials/flash') %> <%- body %></main>
     <%- include('../partials/footer') %>
 
     <script

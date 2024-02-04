@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="container text-center my-3 px-5">
+<div class="container text-center my-3 px-3 px-md-3">
   <h1 class="py-3">Tous Les Fournisseurs</h1>
   <div class="d-flex flex-column justify-content-center align-items-center">
     <div
@@ -34,27 +34,32 @@
         />
       </form>
       <div
-        class="col-md-5 d-flex justify-content-center align-items-center gap-2"
+        class="col-md-8 d-flex flex-wrap justify-content-center align-items-baseline gap-2"
       >
-        <label class="form-label col-md-auto align-self-end" for="location"
-          >Filtrez par:</label
+        <label class="form-label col-12 col-md-auto align-self-start" for="location"
+          >Filtrez par Localisation <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
+            <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M18,0c-2.209,0 -4,1.791 -4,4c0,2.857 4,7 4,7c0,0 4,-4.143 4,-7c0,-2.209 -1.791,-4 -4,-4zM18,2.57031c0.789,0 1.42969,0.64069 1.42969,1.42969c0,0.789 -0.64069,1.42969 -1.42969,1.42969c-0.789,0 -1.42969,-0.64069 -1.42969,-1.42969c0,-0.789 0.64069,-1.42969 1.42969,-1.42969zM8.96875,2.93555l-5.33984,2.13672c-0.38,0.152 -0.62891,0.51873 -0.62891,0.92773v14c0,0.707 0.71409,1.19169 1.37109,0.92969l4.66016,-1.86523l6,2l5.33984,-2.13477c0.38,-0.153 0.62891,-0.52069 0.62891,-0.92969v-7.41406c-0.692,0.88 -1.3035,1.53669 -1.5625,1.80469l-0.4375,0.45313v4.48047l-3,1.19922v-6.74219c-0.529,-0.594 -1.284,-1.49641 -2,-2.56641v9.39844l-4,-1.33203v-11.89453l2.42773,0.80859c-0.262,-0.735 -0.42773,-1.47731 -0.42773,-2.19531c0,-0.018 0.00391,-0.03473 0.00391,-0.05273zM8,5.47656v11.8457l-3,1.20117v-11.8457z"></path></g></g>
+            </svg></label
         >
-        <select
-          class="form-select text-white locSelect"
+        <div class="col-md-5">
+          <select
+          class="form-select text-white locSelect text-center text-md-start "
           name="location"
           id="location"
         >
-          <option value="" selected disabled>-- Localisation --</option>
+          <option value="" selected>-- tous --</option>
           <% for (location of locations) { %>
           <option value="<%= location %>"><%= location %></option>
           <% } %>
         </select>
+        </div>
+   
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6 offset-md-3 mainCol">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 mainCol">
       <% for (let truck of trucks) { %>
       <div
         class="card mb-3 text-start my-4 truck"
@@ -62,7 +67,7 @@
         name="<%= truck.name %>"
       >
         <div class="row g-0">
-          <div class="col-sm-12 col-md-4 col-xl-4">
+          <div class="col-12 col-md-4 col-xl-4">
             <% if (truck.image) { %>
             <img src="<%= truck.image.thumbnail %>" class="w-100" alt="" />
             <% } else { %>
@@ -107,47 +112,45 @@
     // console.log(renderedTrucks[0])
 
     // ------------ filtering logic
-    TrucksLocations = [];
-    renderedTrucks.forEach((truck) => {
-      TrucksLocations.push(truck.id);
-    });
-    function filterItems(arr, query) {
-      let result = [];
-      arr.forEach((el) => {
-        if (el.id.toLowerCase().includes(query.toLowerCase())) {
-          result.push(el);
-        }
-      });
+    function filterItems(arr, query, attribute) {
+      return Object.values(arr).filter((el) =>
+        el.getAttribute(attribute).toLowerCase().includes(query.toLowerCase())
+      );
+    }
+    function updateMainCol(filteredItems) {
       mainCol.innerHTML = "";
-      result.forEach((el) => {
+      filteredItems.forEach((el) => {
         mainCol.appendChild(el);
       });
     }
     locSelect.addEventListener("change", async () => {
-      await filterItems(renderedTrucks, locSelect.value);
+      const filteredTrucks = filterItems(renderedTrucks, locSelect.value, "id");
+      updateMainCol(filteredTrucks);
     });
 
     // ----------------- search logic
-    const allNames = [];
-    renderedTrucks.forEach((el) => {
-      allNames.push(el.attributes.name.value);
-    });
-    // console.log(allNames);
+
     searchBox.addEventListener("input", () => {
-      let result2 = [];
-      renderedTrucks.forEach((truck) => {
-        if (
-          truck.attributes.name.value
-            .toLowerCase()
-            .includes(searchBox.value.toLowerCase())
-        ) {
-          result.push(truck);
-        }
-      });
-      mainCol.innerHTML = "";
-      result.forEach((el) => {
-        mainCol.appendChild(el);
-      });
+      if (locSelect.value) {
+        const filteredTrucksI = filterItems(
+          renderedTrucks,
+          locSelect.value,
+          "id"
+        );
+        const filteredTrucksII = filterItems(
+          filteredTrucksI,
+          searchBox.value,
+          "name"
+        );
+        updateMainCol(filteredTrucksII);
+      } else {
+        const filteredTrucks = filterItems(
+          renderedTrucks,
+          searchBox.value,
+          "name"
+        );
+        updateMainCol(filteredTrucks);
+      }
     });
   </script>
 
