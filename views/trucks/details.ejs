@@ -1,13 +1,13 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheet/starts.css" />
-<section class="container text-center ">
+<section class="container text-center">
   <div class="row my-4 justify-content-center">
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-md-6 col-lg-5">
       <div class="card text-start mb-3 border-secondary" style="width: auto">
         <% if(foundTruck.image) { %>
         <img
           src="<%= foundTruck.image.url %>"
-          class="card-img-top "
+          class="card-img-top"
           alt="image-du-fournissuer"
         />
         <% } else { %>
@@ -68,7 +68,7 @@
           <div
             class="d-flex flex-wrap justify-content-between align-items-center gap-3"
           >
-            <div class="form-floating mb-3 col-7 col-md">
+            <div class="form-floating mb-3 flex-grow-1">
               <input
                 type="number"
                 class="form-control"
@@ -78,23 +78,55 @@
                 required
                 style="height: 70px"
               />
-              <label for="amount">Quantité d'eau en litre</label>
+              <label class="" for="amount">Quantité d'eau en litre</label>
             </div>
             <p>(×) <%= foundTruck.price %> DZD/L</p>
           </div>
           <button class="btn col-md" id="calc">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
-              <g fill="#5bc0de" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="translate(256,248.15165) rotate(180) scale(10.66667,10.66667)"><path d="M12,4.38867c-0.38675,0 -0.77337,0.11194 -1.10937,0.33594l-7.15039,4.76563c-0.463,0.309 -0.74023,0.82877 -0.74023,1.38477c0,1.329 1.48189,2.12177 2.58789,1.38477l6.41211,-4.27539l6.41211,4.27539c1.106,0.737 2.58789,-0.05577 2.58789,-1.38477c0,-0.557 -0.27823,-1.07577 -0.74023,-1.38477l-7.15039,-4.76562c-0.336,-0.224 -0.72263,-0.33594 -1.10937,-0.33594zM12,10.7207c-0.38675,0 -0.77337,0.11194 -1.10937,0.33594l-7.15039,4.76563c-0.463,0.309 -0.74023,0.82876 -0.74023,1.38476c0,1.329 1.48189,2.12177 2.58789,1.38477l6.41211,-4.27539l6.41211,4.27734c1.106,0.737 2.58789,-0.05772 2.58789,-1.38672c0,-0.557 -0.27823,-1.07577 -0.74023,-1.38476l-7.15039,-4.76562c-0.336,-0.224 -0.72263,-0.33594 -1.10937,-0.33594z"></path></g></g>
-              </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="40"
+              height="40"
+              viewBox="0,0,256,256"
+            >
+              <g
+                fill="#5bc0de"
+                fill-rule="nonzero"
+                stroke="none"
+                stroke-width="1"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+                stroke-miterlimit="10"
+                stroke-dasharray=""
+                stroke-dashoffset="0"
+                font-family="none"
+                font-weight="none"
+                font-size="none"
+                text-anchor="none"
+                style="mix-blend-mode: normal"
+              >
+                <g
+                  transform="translate(256,248.15165) rotate(180) scale(10.66667,10.66667)"
+                >
+                  <path
+                    d="M12,4.38867c-0.38675,0 -0.77337,0.11194 -1.10937,0.33594l-7.15039,4.76563c-0.463,0.309 -0.74023,0.82877 -0.74023,1.38477c0,1.329 1.48189,2.12177 2.58789,1.38477l6.41211,-4.27539l6.41211,4.27539c1.106,0.737 2.58789,-0.05577 2.58789,-1.38477c0,-0.557 -0.27823,-1.07577 -0.74023,-1.38477l-7.15039,-4.76562c-0.336,-0.224 -0.72263,-0.33594 -1.10937,-0.33594zM12,10.7207c-0.38675,0 -0.77337,0.11194 -1.10937,0.33594l-7.15039,4.76563c-0.463,0.309 -0.74023,0.82876 -0.74023,1.38476c0,1.329 1.48189,2.12177 2.58789,1.38477l6.41211,-4.27539l6.41211,4.27734c1.106,0.737 2.58789,-0.05772 2.58789,-1.38672c0,-0.557 -0.27823,-1.07577 -0.74023,-1.38476l-7.15039,-4.76562c-0.336,-0.224 -0.72263,-0.33594 -1.10937,-0.33594z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
           </button>
         </div>
-        <div class="bg-dark-subtle rounded-top-4 resultSc p-3 fs-5">-- Prix Total --</div>
+        <div class="bg-dark-subtle rounded-top-4 resultSc p-3 fs-5">
+          -- Prix Total --
+        </div>
       </div>
       <!-------------- end of total price calculator --------------->
     </div>
 
     <!--------------------- Map & reviews column ----------------->
-    <div class="col-12 col-md-5 text-start">
+    <div class="col-12 col-md-6 col-lg-5 text-start">
       <div id="map" class="mb-3"></div>
       <% if (currentUser) { %>
       <div class="my-5">
@@ -162,7 +194,9 @@
           ></textarea>
           <div class="invalid-feedback">Veuillez fournir un avis.</div>
           <div class="d-flex justify-content-center my-3">
-            <button class="btn btn-outline-success col-12 col-md-4">Ajoutez</button>
+            <button class="btn btn-outline-success col-12 col-md-4">
+              Ajoutez
+            </button>
           </div>
         </form>
       </div>
@@ -217,9 +251,8 @@
       <% } %> <% } %>
     </div>
     <!--------------------- END OF Map & reviews column ----------------->
-
   </div>
-</secction>
+</section>
 
 <script>
   const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
@@ -228,7 +261,6 @@
   let input = document.querySelector("#amount");
   const calcBtn = document.querySelector("#calc");
   const resultSc = document.querySelector(".resultSc");
-  
 
   function priceCalc(amount, POO) {
     let inputAmount = parseInt(input.value);
@@ -246,9 +278,9 @@
     }
   }
 
-  amount.addEventListener("input", ()=>{
+  amount.addEventListener("input", () => {
     priceCalc();
-  })
+  });
 
   calcBtn.addEventListener("click", (e) => {
     e.preventDefault();
