@@ -26,7 +26,6 @@ module.exports.postNewForm = async (req, res, next) => {
   }
 
   await newTruck.save();
-  console.log(newTruck);
   req.flash("success", "Fournisseur ajouté!");
   res.redirect(`/trucks/${newTruck._id}`);
 };
