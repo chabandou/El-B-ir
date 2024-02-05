@@ -20,8 +20,11 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.postNewForm = async (req, res, next) => {
   const newTruck = new truck(req.body.truck);
   newTruck.author = req.user._id;
-  newTruck.image.url = req.file.path;
-  newTruck.image.fileName = req.file.filename;
+  if(req.file){
+    newTruck.image.url = req.file.path;
+    newTruck.image.fileName = req.file.filename;
+  }
+
   await newTruck.save();
   console.log(newTruck);
   req.flash("success", "Fournisseur ajouté!");
