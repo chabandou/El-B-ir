@@ -3,8 +3,14 @@ const waterTypes = ["Naturel", "Filtrée"];
 const { cloudinary } = require("../cloudinary");
 
 module.exports.renderIndex = async (req, res) => {
+  const locations = [];
   const trucks = await truck.find({});
-  res.render("trucks/index", { trucks });
+  trucks.forEach((truck) => {
+    if (!locations.includes(truck.location)) {
+      locations.push(truck.location);
+    }
+  });
+  res.render("trucks/index", { trucks, locations });
 };
 
 module.exports.renderNewForm = (req, res) => {
@@ -59,16 +65,18 @@ module.exports.updateTruck = async (req, res) => {
   });
   if (updatedTruck.image && req.file) {
     await cloudinary.uploader.destroy(updatedTruck.image.fileName);
-  }
-  if (updatedTruck.image) {
     updatedTruck.image.url = req.file.path;
     updatedTruck.image.fileName = req.file.filename;
-  } else {
-    updatedTruck.image = {
-      url: req.file.path,
-      fileName: req.file.filename
-    }
   }
+  // if (updatedTruck.image) {
+
+  // }
+  // else {
+  //   updatedTruck.image = {
+  //     url: req.file.path,
+  //     fileName: req.file.filename
+  //   }
+  // }
   await updatedTruck.save();
   req.flash("success", "Fournisseur Modifié!");
   res.redirect(`/trucks/${updatedTruck._id}`);
