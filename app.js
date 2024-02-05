@@ -25,7 +25,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const nodemailer = require("nodemailer");
 const sendMail = require("./public/javascript/mail.js");
 
-const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/theWell'
+const dbUrl =  'mongodb://127.0.0.1:27017/theWell'
 
 mongoose.connect(dbUrl);
 main().catch((err) => console.log(err));
